@@ -31,7 +31,7 @@ class DetalleSitioPage extends StatelessWidget {
           //padding: EdgeInsets.all(15.0),
           child: Form(
             child: Column(
-              children: [_crearBody()],
+              children: [_crearBody(context)],
             ),
           ),
         ),
@@ -39,9 +39,9 @@ class DetalleSitioPage extends StatelessWidget {
     );
   }
 
-  Widget _crearBody() {
+  Widget _crearBody(BuildContext context) {
     return Stack(
-      children: [_mostrarFoto(), _informacion(), _tarjetaIconos()],
+      children: [_mostrarFoto(), _informacion(), _tarjetaIconos(context)],
     );
   }
 
@@ -162,7 +162,7 @@ class DetalleSitioPage extends StatelessWidget {
     }
   }
 
-  Widget _tarjetaIconos() {
+  Widget _tarjetaIconos(BuildContext context) {
     return Card(
       margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 270.0),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
@@ -181,7 +181,8 @@ class DetalleSitioPage extends StatelessWidget {
           children: [
             IconButton(
                 icon: Icon(Icons.map, color: Colors.indigo, size: 30),
-                onPressed: () {}),
+                onPressed: () =>
+                    Navigator.pushNamed(context, 'mapa', arguments: sitio)),
             IconButton(
                 icon: Icon(Icons.panorama_photosphere,
                     color: Colors.orange[800], size: 30),

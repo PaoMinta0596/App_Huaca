@@ -35,14 +35,13 @@ class MenuWidget extends StatelessWidget {
                 Navigator.pushReplacementNamed(context, 'alimentacion'),
           ),
           ListTile(
-            leading: Icon(Icons.directions_bus, color: Color(0xff015249)),
-            title: Text('Transporte'),
-            onTap: () {},
-          ),
+              leading: Icon(Icons.directions_bus, color: Color(0xff015249)),
+              title: Text('Transporte'),
+              onTap: () => Navigator.pushNamed(context, 'transporte')),
           ListTile(
             leading: Icon(Icons.info, color: Color(0xff015249)),
             title: Text('Acerca de Huaca'),
-            onTap: () {},
+            onTap: () => Navigator.popAndPushNamed(context, 'informacion'),
           ),
           ListTile(
             leading: Icon(Icons.policy, color: Color(0xff015249)),

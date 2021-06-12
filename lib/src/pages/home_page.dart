@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
         height: 350.0,
         child: Swiper(
           layout: SwiperLayout.STACK,
-          itemWidth: _screenSize.width * 0.9,
+          itemWidth: _screenSize.width * 0.8,
           itemHeight: _screenSize.height * 0.35,
           itemBuilder: (BuildContext context, int index) {
             return ClipRRect(

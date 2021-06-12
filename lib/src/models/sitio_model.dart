@@ -3,6 +3,7 @@
 //     final sitiosModel = sitiosModelFromJson(jsonString);
 
 import 'dart:convert';
+import 'package:latlong/latlong.dart';
 
 SitiosModel sitiosModelFromJson(String str) =>
     SitiosModel.fromJson(json.decode(str));
@@ -29,6 +30,7 @@ class SitiosModel {
     this.mascotas = true,
     this.categoria = '',
     this.likes = 0,
+    this.coordenadas = '',
   });
 
   String id;
@@ -49,6 +51,7 @@ class SitiosModel {
   bool mascotas;
   String categoria;
   int likes;
+  String coordenadas;
 
   factory SitiosModel.fromJson(Map<String, dynamic> json) => SitiosModel(
         id: json["id"],
@@ -69,6 +72,7 @@ class SitiosModel {
         mascotas: json["mascotas"],
         categoria: json["categoria"],
         likes: json["likes"],
+        coordenadas: json["coordenadas"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -90,5 +94,14 @@ class SitiosModel {
         "mascotas": mascotas,
         "categoria": categoria,
         "likes": likes,
+        "coordenadas": coordenadas,
       };
+
+  LatLng getLatLng() {
+    final lalo = coordenadas.substring(0).split(',');
+    final lat = double.parse(lalo[1]);
+    final lng = double.parse(lalo[0]);
+
+    return LatLng(lat, lng);
+  }
 }
