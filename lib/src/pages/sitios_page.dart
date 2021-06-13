@@ -1,6 +1,7 @@
 import 'package:app_atractivos/src/bloc/provider.dart';
 import 'package:app_atractivos/src/models/sitio_model.dart';
 import 'package:app_atractivos/src/providers/sitios_provider.dart';
+import 'package:app_atractivos/src/search/search_delegate.dart';
 import 'package:app_atractivos/src/widgets/menu_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,7 @@ class SitiosPage extends StatefulWidget {
 class _SitiosPageState extends State<SitiosPage> {
   final sitiosProvider = new SitiosProvider();
   int selectedIndex = 0;
+  String query = '';
   bool isPressed = true;
   List categorias = [
     'Todos',
@@ -30,48 +32,29 @@ class _SitiosPageState extends State<SitiosPage> {
         title: Text('Sitios turísticos'),
         centerTitle: true,
         elevation: 0,
+        actions: [
+          IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                showSearch(
+                  context: context,
+                  delegate: DataSearch('Buscar sitio'),
+                );
+              })
+        ],
       ),
       backgroundColor: Color(0xff57BC90),
       drawer: MenuWidget(),
       body: Container(
           child: Column(
         children: [
-          _searchBox(),
           _categorias(context),
           Expanded(
               child: Stack(
-            children: [_crearListado()],
+            children: [_crearListado(query)],
           ))
         ],
       )),
-    );
-  }
-
-  Widget _searchBox() {
-    return Container(
-      margin: EdgeInsets.only(right: 20.0, left: 20.0, top: 0, bottom: 10.0),
-      padding: EdgeInsets.symmetric(
-        horizontal: 20.0,
-      ),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.4),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: TextField(
-        //onChanged: onChanged,
-        //style: TextStyle(color: Colors.white),
-        decoration: InputDecoration(
-          enabledBorder: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          icon: Icon(
-            Icons.search_rounded,
-            color: Color(0xff015249),
-          ),
-          hintText: 'Search',
-          hintStyle: TextStyle(color: Colors.white),
-        ),
-        onTap: () {},
-      ),
     );
   }
 
@@ -86,14 +69,19 @@ class _SitiosPageState extends State<SitiosPage> {
                 onTap: () {
                   setState(() {
                     selectedIndex = index;
+                    if (index == 0) {
+                      query = '';
+                    } else {
+                      query = categorias[index];
+                    }
                   });
                 },
                 child: Container(
                   alignment: Alignment.center,
                   margin: EdgeInsets.only(
-                      left: 20.0,
+                      left: 10.0,
                       right: index == categorias.length - 1 ? 20.0 : 0),
-                  padding: EdgeInsets.symmetric(horizontal: 25.0),
+                  padding: EdgeInsets.symmetric(horizontal: 22.0),
                   decoration: BoxDecoration(
                       color: index == selectedIndex
                           ? Colors.white.withOpacity(0.4)
@@ -108,9 +96,9 @@ class _SitiosPageState extends State<SitiosPage> {
     );
   }
 
-  Widget _crearListado() {
+  Widget _crearListado(String query) {
     return FutureBuilder(
-      future: sitiosProvider.cargarSitios(),
+      future: sitiosProvider.buscarSitios(query),
       builder:
           (BuildContext context, AsyncSnapshot<List<SitiosModel>> snapshot) {
         if (snapshot.hasData) {

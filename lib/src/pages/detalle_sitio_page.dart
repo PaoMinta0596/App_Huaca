@@ -1,8 +1,9 @@
 import 'package:app_atractivos/src/models/sitio_model.dart';
 import 'package:app_atractivos/src/utils/expandir_texto.dart';
 import 'package:app_atractivos/src/utils/utils.dart';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:share/share.dart';
 
 class DetalleSitioPage extends StatelessWidget {
   SitiosModel sitio = new SitiosModel();
@@ -205,7 +206,10 @@ class DetalleSitioPage extends StatelessWidget {
                 onPressed: () {}),
             IconButton(
                 icon: Icon(Icons.share_outlined, color: Colors.teal, size: 30),
-                onPressed: () {}),
+                onPressed: () {
+                  Share.share(
+                      '${sitio.nombre}... Es un lugar hermoso que debes conocer cuando visites el cantón San Pedro de Huaca');
+                }),
           ],
         ),
       ),
