@@ -97,11 +97,11 @@ class SitiosModel {
         "coordenadas": coordenadas,
       };
 
-  LatLng getLatLng() {
-    final lalo = coordenadas.substring(0).split(',');
-    final lat = double.parse(lalo[1]);
-    final lng = double.parse(lalo[0]);
+  // LatLng getLatLng() {
+  //   final lalo = coordenadas.substring(0).split(',');
+  //   final lat = double.parse(lalo[1]);
+  //   final lng = double.parse(lalo[0]);
 
-    return LatLng(lat, lng);
-  }
+  //   return LatLng(lat, lng);
+  // }
 }

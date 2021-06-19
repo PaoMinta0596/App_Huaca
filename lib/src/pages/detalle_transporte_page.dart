@@ -29,18 +29,16 @@ class DetalleTransportePage extends StatelessWidget {
         child: Container(
           //padding: EdgeInsets.all(15.0),
           child: Form(
-            child: Column(
-              children: [_crearBody()],
+            child: Stack(
+              children: [
+                _mostrarFoto(),
+                _informacion(),
+                _tarjetaIconos(context)
+              ],
             ),
           ),
         ),
       ),
-    );
-  }
-
-  Widget _crearBody() {
-    return Stack(
-      children: [_mostrarFoto(), _informacion(), _tarjetaIconos()],
     );
   }
 
@@ -127,10 +125,10 @@ class DetalleTransportePage extends StatelessWidget {
     }
   }
 
-  Widget _tarjetaIconos() {
+  Widget _tarjetaIconos(BuildContext context) {
     return Card(
       margin: EdgeInsets.symmetric(
-        horizontal: 80.0,
+        horizontal: 120.0,
         vertical: 270.0,
       ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
@@ -143,13 +141,14 @@ class DetalleTransportePage extends StatelessWidget {
           //color: Colors.blue[100],
         ),
         height: 55.0,
-        padding: EdgeInsets.only(left: 15, right: 15, top: 0, bottom: 0),
+        padding: EdgeInsets.only(left: 20, right: 20, top: 0, bottom: 0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
                 icon: Icon(Icons.map, color: Colors.indigo, size: 30),
-                onPressed: () {}),
+                onPressed: () => Navigator.pushNamed(context, 'mapa',
+                    arguments: transporte.coordenadas)),
             IconButton(
                 icon: Image.asset('assets/facebook.png', width: 28),
                 onPressed: () => abrirEnlace(transporte.facebook)),

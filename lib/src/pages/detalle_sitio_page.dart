@@ -2,7 +2,6 @@ import 'package:app_atractivos/src/models/sitio_model.dart';
 import 'package:app_atractivos/src/utils/expandir_texto.dart';
 import 'package:app_atractivos/src/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:share/share.dart';
 
 class DetalleSitioPage extends StatelessWidget {
@@ -182,24 +181,27 @@ class DetalleSitioPage extends StatelessWidget {
           children: [
             IconButton(
                 icon: Icon(Icons.map, color: Colors.indigo, size: 30),
-                onPressed: () =>
-                    Navigator.pushNamed(context, 'mapa', arguments: sitio)),
+                onPressed: () => Navigator.pushNamed(context, 'mapa',
+                    arguments: sitio.coordenadas)),
             IconButton(
                 icon: Icon(Icons.panorama_photosphere,
                     color: Colors.orange[800], size: 30),
-                onPressed: () {}),
+                onPressed: () => Navigator.pushNamed(context, 'abrirEnlace',
+                    arguments: sitio.recorrido)),
             IconButton(
                 icon: Image.asset(
                   'assets/facebook.png',
                   width: 28,
                 ),
-                onPressed: () => abrirEnlace(sitio.facebook)),
+                onPressed: () => Navigator.pushNamed(context, 'abrirEnlace',
+                    arguments: sitio.facebook)),
             IconButton(
                 icon: Image.asset(
                   'assets/whatsapp.png',
                   height: 28,
                 ),
-                onPressed: () => abrirEnlace(sitio.whatsapp)),
+                onPressed: () => Navigator.pushNamed(context, 'abrirEnlace',
+                    arguments: sitio.whatsapp)),
             IconButton(
                 icon: Icon(Icons.bookmark_border,
                     color: Colors.purple[900], size: 30),

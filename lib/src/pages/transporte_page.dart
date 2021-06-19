@@ -1,5 +1,6 @@
 import 'package:app_atractivos/src/models/transporte_model.dart';
 import 'package:app_atractivos/src/providers/transporte_provider.dart';
+import 'package:app_atractivos/src/search/search_transporte.dart';
 import 'package:app_atractivos/src/widgets/menu_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,16 @@ class _TransportePageState extends State<TransportePage> {
 
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                showSearch(
+                  context: context,
+                  delegate: SearchTransporte('Buscar medios de transporte'),
+                );
+              })
+        ],
         title: Text('Transporte'),
         centerTitle: true,
         elevation: 0,
@@ -26,7 +37,6 @@ class _TransportePageState extends State<TransportePage> {
       body: Container(
           child: Column(
         children: [
-          _searchBox(),
           Expanded(
               child: Stack(
             children: [_crearListado()],
@@ -36,37 +46,9 @@ class _TransportePageState extends State<TransportePage> {
     );
   }
 
-  Widget _searchBox() {
-    return Container(
-      margin: EdgeInsets.only(right: 20.0, left: 20.0, top: 0, bottom: 10.0),
-      padding: EdgeInsets.symmetric(
-        horizontal: 20.0,
-      ),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.4),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: TextField(
-        //onChanged: onChanged,
-        //style: TextStyle(color: Colors.white),
-        decoration: InputDecoration(
-          enabledBorder: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          icon: Icon(
-            Icons.search_rounded,
-            color: Color(0xff015249),
-          ),
-          hintText: 'Search',
-          hintStyle: TextStyle(color: Colors.white),
-        ),
-        onTap: () {},
-      ),
-    );
-  }
-
   Widget _crearListado() {
     return FutureBuilder(
-      future: transporteProvider.cargarAlimentacion(),
+      future: transporteProvider.cargarTransporte(''),
       builder: (BuildContext context,
           AsyncSnapshot<List<TransporteModel>> snapshot) {
         if (snapshot.hasData) {

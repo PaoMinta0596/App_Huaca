@@ -1,7 +1,9 @@
+import 'package:app_atractivos/src/pages/abrir_enlace_page.dart';
 import 'package:app_atractivos/src/pages/alimentacion_page.dart';
 import 'package:app_atractivos/src/pages/detalle_alimentacion_page.dart';
 import 'package:app_atractivos/src/pages/detalle_hospedaje_page.dart';
 import 'package:app_atractivos/src/pages/detalle_transporte_page.dart';
+import 'package:app_atractivos/src/pages/emergencias_page.dart';
 import 'package:app_atractivos/src/pages/hospedaje_page.dart';
 import 'package:app_atractivos/src/pages/informacion_page.dart';
 import 'package:app_atractivos/src/pages/mapa_page.dart';
@@ -38,6 +40,8 @@ class MyApp extends StatelessWidget {
           'detalleTransporte': (BuildContext context) =>
               DetalleTransportePage(),
           'informacion': (BuildContext context) => InformacionPage(),
+          'emergencias': (BuildContext context) => EmergenciasPage(),
+          'abrirEnlace': (BuildContext context) => AbrirEnlace(),
         },
         theme: ThemeData(primaryColor: Color(0xff57BC90)),
       ),

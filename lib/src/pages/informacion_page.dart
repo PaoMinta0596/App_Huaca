@@ -108,9 +108,12 @@ class _Bandera extends StatelessWidget {
                 borderRadius: BorderRadius.circular(180.0)),
             clipBehavior: Clip.antiAlias,
             elevation: 15,
-            child: Image(
-              image: AssetImage('assets/home/bandera.png'),
+            child: FadeInImage(
+              image: NetworkImage(
+                  'https://res.cloudinary.com/dgn9qbfmo/image/upload/v1624047691/bandera_sxd9um.png'),
+              placeholder: AssetImage('assets/jar-loading.gif'),
               height: 200,
+              width: 200,
             ),
           ),
           SizedBox(height: 20.0),
@@ -166,9 +169,12 @@ class _Escudo extends StatelessWidget {
                 borderRadius: BorderRadius.circular(180.0)),
             clipBehavior: Clip.antiAlias,
             elevation: 15,
-            child: Image(
-              image: AssetImage('assets/home/escudo.png'),
+            child: FadeInImage(
+              image: NetworkImage(
+                  'https://res.cloudinary.com/dgn9qbfmo/image/upload/v1624047682/escudo_cuigx7.png'),
+              placeholder: AssetImage('assets/jar-loading.gif'),
               height: 200,
+              width: 200,
             ),
           ),
           SizedBox(height: 20.0),
@@ -255,9 +261,12 @@ class _DatosGenerales extends StatelessWidget {
                 borderRadius: BorderRadius.circular(180.0)),
             clipBehavior: Clip.antiAlias,
             elevation: 15,
-            child: Image(
-              image: AssetImage('assets/home/logo.jpg'),
+            child: FadeInImage(
+              image: NetworkImage(
+                  'https://res.cloudinary.com/dgn9qbfmo/image/upload/v1624047656/logo_ncz3ew.jpg'),
+              placeholder: AssetImage('assets/jar-loading.gif'),
               height: 200,
+              width: 200,
             ),
           ),
           SizedBox(height: 20.0),

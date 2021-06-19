@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class TransporteProvider {
   final String _url = 'https://sitioshuaca-default-rtdb.firebaseio.com';
 
-  Future<List<TransporteModel>> cargarAlimentacion() async {
+  Future<List<TransporteModel>> cargarTransporte(query) async {
     final url = Uri.parse('$_url/transporte.json');
     final resp = await http.get(url);
 
@@ -14,10 +14,12 @@ class TransporteProvider {
     final List<TransporteModel> transporte = new List();
     if (decodedData == null) return [];
     decodedData.forEach((id, trans) {
-      final transTemp = TransporteModel.fromJson(trans);
-      transTemp.id = id;
-      transporte.add(transTemp);
-      //print(sit);
+      if (trans.toString().toLowerCase().contains(query.toLowerCase())) {
+        final transTemp = TransporteModel.fromJson(trans);
+        transTemp.id = id;
+        transporte.add(transTemp);
+        //print(sit);
+      }
     });
 
     return transporte;

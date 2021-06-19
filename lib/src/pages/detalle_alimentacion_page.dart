@@ -31,18 +31,16 @@ class DetalleAlimentacionPage extends StatelessWidget {
         child: Container(
           //padding: EdgeInsets.all(15.0),
           child: Form(
-            child: Column(
-              children: [_crearBody()],
+            child: Stack(
+              children: [
+                _mostrarFoto(),
+                _informacion(),
+                _tarjetaIconos(context)
+              ],
             ),
           ),
         ),
       ),
-    );
-  }
-
-  Widget _crearBody() {
-    return Stack(
-      children: [_mostrarFoto(), _informacion(), _tarjetaIconos()],
     );
   }
 
@@ -120,7 +118,7 @@ class DetalleAlimentacionPage extends StatelessWidget {
     }
   }
 
-  Widget _tarjetaIconos() {
+  Widget _tarjetaIconos(BuildContext context) {
     return Card(
       margin: EdgeInsets.symmetric(
         horizontal: 80.0,
@@ -142,7 +140,8 @@ class DetalleAlimentacionPage extends StatelessWidget {
           children: [
             IconButton(
                 icon: Icon(Icons.map, color: Colors.indigo, size: 30),
-                onPressed: () {}),
+                onPressed: () => Navigator.pushNamed(context, 'mapa',
+                    arguments: alimentacion.coordenadas)),
             IconButton(
                 icon: Image.asset('assets/facebook.png', width: 28),
                 onPressed: () => abrirEnlace(alimentacion.facebook)),

@@ -1,11 +1,14 @@
-import 'package:app_atractivos/src/models/sitio_model.dart';
+import 'package:latlong/latlong.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 
 class MapaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final SitiosModel sitio = ModalRoute.of(context).settings.arguments;
+    final String coordenadas = ModalRoute.of(context).settings.arguments;
+    final lalo = coordenadas.substring(0).split(',');
+    final lat = double.parse(lalo[1]);
+    final lng = double.parse(lalo[0]);
 
     return Scaffold(
         appBar: AppBar(
@@ -16,7 +19,7 @@ class MapaPage extends StatelessWidget {
         ),
         body: FlutterMap(
           options: MapOptions(
-            center: sitio.getLatLng(),
+            center: LatLng(lat, lng),
             zoom: 13.0,
           ),
           layers: [
@@ -33,7 +36,7 @@ class MapaPage extends StatelessWidget {
                 Marker(
                   width: 80.0,
                   height: 80.0,
-                  point: sitio.getLatLng(),
+                  point: LatLng(lat, lng),
                   builder: (ctx) => Container(
                     child: Icon(
                       Icons.location_pin,

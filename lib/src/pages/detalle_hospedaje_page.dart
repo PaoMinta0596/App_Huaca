@@ -30,8 +30,12 @@ class DetalleHospedajePage extends StatelessWidget {
         child: Container(
           //padding: EdgeInsets.all(15.0),
           child: Form(
-            child: Column(
-              children: [_crearBody()],
+            child: Stack(
+              children: [
+                _mostrarFoto(),
+                _informacion(),
+                _tarjetaIconos(context)
+              ],
             ),
           ),
         ),
@@ -39,11 +43,11 @@ class DetalleHospedajePage extends StatelessWidget {
     );
   }
 
-  Widget _crearBody() {
-    return Stack(
-      children: [_mostrarFoto(), _informacion(), _tarjetaIconos()],
-    );
-  }
+  // Widget _crearBody(BuildContext) {
+  //   return Stack(
+  //     children: [_mostrarFoto(), _informacion(), _tarjetaIconos(context)],
+  //   );
+  // }
 
   Widget _informacion() {
     return Container(
@@ -162,7 +166,7 @@ class DetalleHospedajePage extends StatelessWidget {
     }
   }
 
-  Widget _tarjetaIconos() {
+  Widget _tarjetaIconos(BuildContext context) {
     return Card(
       margin: EdgeInsets.symmetric(
         horizontal: 80.0,
@@ -184,19 +188,22 @@ class DetalleHospedajePage extends StatelessWidget {
           children: [
             IconButton(
                 icon: Icon(Icons.map, color: Colors.indigo, size: 30),
-                onPressed: () {}),
+                onPressed: () => Navigator.pushNamed(context, 'mapa',
+                    arguments: hospedaje.coordenadas)),
             IconButton(
                 icon: Image.asset(
                   'assets/facebook.png',
                   width: 28,
                 ),
-                onPressed: () => abrirEnlace(hospedaje.facebook)),
+                onPressed: () => Navigator.pushNamed(context, 'abrirEnlace',
+                    arguments: hospedaje.facebook)),
             IconButton(
                 icon: Image.asset(
                   'assets/whatsapp.png',
                   height: 28,
                 ),
-                onPressed: () => abrirEnlace(hospedaje.whatsapp)),
+                onPressed: () => Navigator.pushNamed(context, 'abrirEnlace',
+                    arguments: hospedaje.whatsapp)),
           ],
         ),
       ),

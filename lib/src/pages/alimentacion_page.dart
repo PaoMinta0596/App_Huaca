@@ -1,6 +1,7 @@
 import 'package:app_atractivos/src/models/alimentacion_model.dart';
 
 import 'package:app_atractivos/src/providers/alimentacion_provider.dart';
+import 'package:app_atractivos/src/search/search_alimentacion.dart';
 
 import 'package:app_atractivos/src/widgets/menu_widget.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,16 @@ class _AlimentacionPageState extends State<AlimentacionPage> {
 
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                showSearch(
+                  context: context,
+                  delegate: SearchAlimentacion('Buscar sitios de alimentación'),
+                );
+              })
+        ],
         title: Text('Alimentación'),
         centerTitle: true,
         elevation: 0,
@@ -28,7 +39,6 @@ class _AlimentacionPageState extends State<AlimentacionPage> {
       body: Container(
           child: Column(
         children: [
-          _searchBox(),
           Expanded(
               child: Stack(
             children: [_crearListado()],
@@ -38,37 +48,9 @@ class _AlimentacionPageState extends State<AlimentacionPage> {
     );
   }
 
-  Widget _searchBox() {
-    return Container(
-      margin: EdgeInsets.only(right: 20.0, left: 20.0, top: 0, bottom: 10.0),
-      padding: EdgeInsets.symmetric(
-        horizontal: 20.0,
-      ),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.4),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: TextField(
-        //onChanged: onChanged,
-        //style: TextStyle(color: Colors.white),
-        decoration: InputDecoration(
-          enabledBorder: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          icon: Icon(
-            Icons.search_rounded,
-            color: Color(0xff015249),
-          ),
-          hintText: 'Search',
-          hintStyle: TextStyle(color: Colors.white),
-        ),
-        onTap: () {},
-      ),
-    );
-  }
-
   Widget _crearListado() {
     return FutureBuilder(
-      future: alimentacionProvider.cargarAlimentacion(),
+      future: alimentacionProvider.cargarAlimentacion(''),
       builder: (BuildContext context,
           AsyncSnapshot<List<AlimentacionModel>> snapshot) {
         if (snapshot.hasData) {
@@ -160,3 +142,31 @@ class _AlimentacionPageState extends State<AlimentacionPage> {
     );
   }
 }
+
+// Widget _searchBox() {
+//   return Container(
+//     margin: EdgeInsets.only(right: 20.0, left: 20.0, top: 0, bottom: 10.0),
+//     padding: EdgeInsets.symmetric(
+//       horizontal: 20.0,
+//     ),
+//     decoration: BoxDecoration(
+//       color: Colors.white.withOpacity(0.4),
+//       borderRadius: BorderRadius.circular(20),
+//     ),
+//     child: TextField(
+//       //onChanged: onChanged,
+//       //style: TextStyle(color: Colors.white),
+//       decoration: InputDecoration(
+//         enabledBorder: InputBorder.none,
+//         focusedBorder: InputBorder.none,
+//         icon: Icon(
+//           Icons.search_rounded,
+//           color: Color(0xff015249),
+//         ),
+//         hintText: 'Search',
+//         hintStyle: TextStyle(color: Colors.white),
+//       ),
+//       onTap: () {},
+//     ),
+//   );
+// }

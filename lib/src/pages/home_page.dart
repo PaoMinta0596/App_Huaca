@@ -4,23 +4,20 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 
 class HomePage extends StatelessWidget {
   final fotos = [
-    'assets/home/guanderas.jpg',
-    'assets/home/parque-purita.jpg',
-    'assets/home/huaca-noche.jpg',
-    'assets/home/dante-house.jpg',
-    'assets/home/dante.jpg',
-    'assets/home/letras-huaca.jpg',
-    'assets/home/paramo.jpg',
-    'assets/home/parque-central.jpg',
-    'assets/home/purita-dia.jpg',
-    'assets/home/santuario.jpg',
+    'https://res.cloudinary.com/dgn9qbfmo/image/upload/v1624047629/dante_jnw0qq.jpg',
+    'https://res.cloudinary.com/dgn9qbfmo/image/upload/v1624047676/parque-purita_indymc.jpg',
+    'https://res.cloudinary.com/dgn9qbfmo/image/upload/v1624047666/parque-central_sjjswt.jpg',
+    'https://res.cloudinary.com/dgn9qbfmo/image/upload/v1624047651/letras-huaca_m5iz32.jpg',
+    'https://res.cloudinary.com/dgn9qbfmo/image/upload/v1624047639/dante-house_qbms1t.jpg',
+    'https://res.cloudinary.com/dgn9qbfmo/image/upload/v1621891835/santuario_wshu3e.jpg',
+    'https://res.cloudinary.com/dgn9qbfmo/image/upload/v1624048103/IMG_20210605_121106_3_gkraar.jpg'
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Página de Inicio'),
+          title: Text('Inicio'),
         ),
         drawer: MenuWidget(),
         body: Container(
@@ -43,7 +40,11 @@ class HomePage extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
-              child: Image.asset(fotos[index], fit: BoxFit.fill),
+              child: FadeInImage(
+                image: NetworkImage(fotos[index]),
+                fit: BoxFit.fill,
+                placeholder: AssetImage('assets/jar-loading.gif'),
+              ),
             );
           },
           itemCount: fotos.length,

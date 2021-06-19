@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class HospedajeProvider {
   final String _url = 'https://sitioshuaca-default-rtdb.firebaseio.com';
 
-  Future<List<HospedajeModel>> cargarHospedaje() async {
+  Future<List<HospedajeModel>> cargarHospedaje(query) async {
     final url = Uri.parse('$_url/hospedaje.json');
     final resp = await http.get(url);
 
@@ -13,10 +13,13 @@ class HospedajeProvider {
 
     final List<HospedajeModel> hospedaje = new List();
     if (decodedData == null) return [];
+
     decodedData.forEach((id, hosp) {
-      final hosTemp = HospedajeModel.fromJson(hosp);
-      hosTemp.id = id;
-      hospedaje.add(hosTemp);
+      if (hosp.toString().toLowerCase().contains(query.toLowerCase())) {
+        final hosTemp = HospedajeModel.fromJson(hosp);
+        hosTemp.id = id;
+        hospedaje.add(hosTemp);
+      }
       //print(sit);
     });
 

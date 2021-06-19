@@ -10,9 +10,10 @@ class MenuWidget extends StatelessWidget {
           DrawerHeader(
             child: Container(),
             decoration: BoxDecoration(
+                color: Color(0xff77c9d4),
                 image: DecorationImage(
-                    image: AssetImage('assets/menu-img.jpg'),
-                    fit: BoxFit.cover)),
+                    image: AssetImage('assets/VIAJEROS.png'),
+                    fit: BoxFit.contain)),
           ),
           ListTile(
             leading: Icon(Icons.home_rounded, color: Color(0xff015249)),
@@ -41,12 +42,12 @@ class MenuWidget extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.info, color: Color(0xff015249)),
             title: Text('Acerca de Huaca'),
-            onTap: () => Navigator.popAndPushNamed(context, 'informacion'),
+            onTap: () => Navigator.pushNamed(context, 'informacion'),
           ),
           ListTile(
             leading: Icon(Icons.policy, color: Color(0xff015249)),
             title: Text('Emergencias'),
-            onTap: () {},
+            onTap: () => Navigator.pushNamed(context, 'emergencias'),
           ),
         ],
       ),
