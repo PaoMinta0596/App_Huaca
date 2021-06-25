@@ -1,5 +1,4 @@
 import 'package:app_atractivos/src/models/alimentacion_model.dart';
-import 'package:app_atractivos/src/models/hospedaje_model.dart';
 import 'package:app_atractivos/src/utils/expandir_texto.dart';
 import 'package:app_atractivos/src/utils/utils.dart';
 
@@ -144,7 +143,8 @@ class DetalleAlimentacionPage extends StatelessWidget {
                     arguments: alimentacion.coordenadas)),
             IconButton(
                 icon: Image.asset('assets/facebook.png', width: 28),
-                onPressed: () => abrirEnlace(alimentacion.facebook)),
+                onPressed: () => Navigator.pushNamed(context, 'abrirEnlace',
+                    arguments: alimentacion.facebook)),
             IconButton(
                 icon: Image.asset('assets/whatsapp.png', height: 28),
                 onPressed: () => abrirEnlace(alimentacion.whatsapp)),

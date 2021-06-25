@@ -3,7 +3,6 @@
 //     final sitiosModel = sitiosModelFromJson(jsonString);
 
 import 'dart:convert';
-import 'package:latlong/latlong.dart';
 
 SitiosModel sitiosModelFromJson(String str) =>
     SitiosModel.fromJson(json.decode(str));

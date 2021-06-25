@@ -200,21 +200,60 @@ class DetalleSitioPage extends StatelessWidget {
                   'assets/whatsapp.png',
                   height: 28,
                 ),
-                onPressed: () => Navigator.pushNamed(context, 'abrirEnlace',
-                    arguments: sitio.whatsapp)),
+                onPressed: () {
+                  if (sitio.whatsapp == 'vacio') {
+                    _mostrarAlert(context);
+                  } else {
+                    abrirEnlace(sitio.whatsapp);
+                  }
+                }),
             IconButton(
                 icon: Icon(Icons.bookmark_border,
                     color: Colors.purple[900], size: 30),
                 onPressed: () {}),
             IconButton(
                 icon: Icon(Icons.share_outlined, color: Colors.teal, size: 30),
-                onPressed: () {
-                  Share.share(
-                      '${sitio.nombre}... Es un lugar hermoso que debes conocer cuando visites el cantón San Pedro de Huaca');
+                onPressed: () async {
+                  await Share.share(
+                      '${sitio.nombre} \n \nEs un lugar hermoso que debes conocer cuando visites el cantón San Pedro de Huaca. \n\n Conoce más acerca del cantón visitando la app VIAJEROS HUACA',
+                      subject: 'San Pedro de Huaca.');
                 }),
           ],
         ),
       ),
+    );
+  }
+
+  void _mostrarAlert(BuildContext context) {
+    showDialog(
+      context: context,
+      // barrierDismissible: true,
+      builder: (context) {
+        return AlertDialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          title: Text('Whatsapp'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text('Este sitio no dispone de whatsapp\n\n'),
+              Image.asset(
+                'assets/whatsapp.png',
+                height: 60,
+                width: 60,
+              )
+            ],
+          ),
+          actions: <Widget>[
+            TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text(
+                  'Ok',
+                  style: TextStyle(fontSize: 20),
+                )),
+          ],
+        );
+      },
     );
   }
 }

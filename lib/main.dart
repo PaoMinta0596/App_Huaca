@@ -6,7 +6,9 @@ import 'package:app_atractivos/src/pages/detalle_transporte_page.dart';
 import 'package:app_atractivos/src/pages/emergencias_page.dart';
 import 'package:app_atractivos/src/pages/hospedaje_page.dart';
 import 'package:app_atractivos/src/pages/informacion_page.dart';
+import 'package:app_atractivos/src/pages/mapa_general.dart';
 import 'package:app_atractivos/src/pages/mapa_page.dart';
+import 'package:app_atractivos/src/pages/panorma_page.dart';
 import 'package:app_atractivos/src/pages/sitios_page.dart';
 import 'package:app_atractivos/src/pages/transporte_page.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +44,8 @@ class MyApp extends StatelessWidget {
           'informacion': (BuildContext context) => InformacionPage(),
           'emergencias': (BuildContext context) => EmergenciasPage(),
           'abrirEnlace': (BuildContext context) => AbrirEnlace(),
+          'panorama': (BuildContext context) => PanoramaPage(),
+          'mapaGeneral': (BuildContext context) => MapaGeneralPage()
         },
         theme: ThemeData(primaryColor: Color(0xff57BC90)),
       ),

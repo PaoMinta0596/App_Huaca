@@ -1,6 +1,5 @@
 import 'package:app_atractivos/src/models/transporte_model.dart';
 import 'package:app_atractivos/src/utils/expandir_texto.dart';
-import 'package:app_atractivos/src/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class DetalleTransportePage extends StatelessWidget {
@@ -151,7 +150,8 @@ class DetalleTransportePage extends StatelessWidget {
                     arguments: transporte.coordenadas)),
             IconButton(
                 icon: Image.asset('assets/facebook.png', width: 28),
-                onPressed: () => abrirEnlace(transporte.facebook)),
+                onPressed: () => Navigator.pushNamed(context, 'abrirEnlace',
+                    arguments: transporte.facebook)),
           ],
         ),
       ),

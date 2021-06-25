@@ -6,9 +6,10 @@ class AbrirEnlace extends StatelessWidget {
   Widget build(BuildContext context) {
     final String url = ModalRoute.of(context).settings.arguments;
     return Scaffold(
-      body: Container(
+      body: SafeArea(
         child: WebView(
           initialUrl: url,
+          javascriptMode: JavascriptMode.unrestricted,
         ),
       ),
     );

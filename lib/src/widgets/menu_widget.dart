@@ -40,6 +40,11 @@ class MenuWidget extends StatelessWidget {
               title: Text('Transporte'),
               onTap: () => Navigator.pushNamed(context, 'transporte')),
           ListTile(
+            leading: Icon(Icons.map_outlined, color: Color(0xff015249)),
+            title: Text('Mapa del cantón'),
+            onTap: () => Navigator.pushNamed(context, 'mapaGeneral'),
+          ),
+          ListTile(
             leading: Icon(Icons.info, color: Color(0xff015249)),
             title: Text('Acerca de Huaca'),
             onTap: () => Navigator.pushNamed(context, 'informacion'),

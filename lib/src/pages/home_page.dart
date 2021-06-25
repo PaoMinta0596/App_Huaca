@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
               style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold)),
           SizedBox(height: 20.0),
           Text(
-            'Aquí podrás encontrar lugares mágicos e increíbles que tal vez aún no conozcas, es un cantón de espectacular ecosistema y abierto páramo son sus jardines de frailejones, se mantiene siempre vivo por sus fiestas y tradiciones de su gente.',
+            'Aquí podrás encontrar lugares mágicos e increíbles que tal vez aún no conozcas, es un cantón de espectacular ecosistema y jardines de frailejones en su páramo, se mantiene siempre vivo por sus fiestas y tradiciones.',
             style: TextStyle(fontSize: 20.0),
             textAlign: TextAlign.justify,
           ),

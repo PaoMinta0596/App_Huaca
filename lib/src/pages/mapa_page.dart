@@ -6,6 +6,7 @@ class MapaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String coordenadas = ModalRoute.of(context).settings.arguments;
+
     final lalo = coordenadas.substring(0).split(',');
     final lat = double.parse(lalo[1]);
     final lng = double.parse(lalo[0]);
@@ -20,7 +21,7 @@ class MapaPage extends StatelessWidget {
         body: FlutterMap(
           options: MapOptions(
             center: LatLng(lat, lng),
-            zoom: 13.0,
+            zoom: 16.0,
           ),
           layers: [
             TileLayerOptions(
