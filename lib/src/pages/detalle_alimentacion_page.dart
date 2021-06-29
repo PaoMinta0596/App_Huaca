@@ -14,7 +14,6 @@ class DetalleAlimentacionPage extends StatelessWidget {
       alimentacion = aliData;
     }
     return Scaffold(
-      backgroundColor: Color.fromRGBO(105, 124, 55, 1.0),
       appBar: AppBar(
         title: Text('${alimentacion.nombre}'),
         actions: [
@@ -23,7 +22,7 @@ class DetalleAlimentacionPage extends StatelessWidget {
                 Icons.home,
                 size: 35,
               ),
-              onPressed: () => Navigator.pushNamed(context, 'home'))
+              onPressed: () => Navigator.pushReplacementNamed(context, 'home'))
         ],
       ),
       body: SingleChildScrollView(
@@ -147,7 +146,7 @@ class DetalleAlimentacionPage extends StatelessWidget {
                     arguments: alimentacion.facebook)),
             IconButton(
                 icon: Image.asset('assets/whatsapp.png', height: 28),
-                onPressed: () => abrirEnlace(alimentacion.whatsapp)),
+                onPressed: () => abrirEnlace(context, alimentacion.whatsapp)),
           ],
         ),
       ),

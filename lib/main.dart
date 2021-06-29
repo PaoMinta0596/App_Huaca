@@ -1,16 +1,20 @@
 import 'package:app_atractivos/src/pages/abrir_enlace_page.dart';
 import 'package:app_atractivos/src/pages/alimentacion_page.dart';
 import 'package:app_atractivos/src/pages/detalle_alimentacion_page.dart';
+import 'package:app_atractivos/src/pages/detalle_eventos_page.dart';
+import 'package:app_atractivos/src/pages/detalle_gastronomia.dart';
 import 'package:app_atractivos/src/pages/detalle_hospedaje_page.dart';
 import 'package:app_atractivos/src/pages/detalle_transporte_page.dart';
 import 'package:app_atractivos/src/pages/emergencias_page.dart';
+import 'package:app_atractivos/src/pages/eventos_page.dart';
+import 'package:app_atractivos/src/pages/gastronomia_page.dart';
 import 'package:app_atractivos/src/pages/hospedaje_page.dart';
 import 'package:app_atractivos/src/pages/informacion_page.dart';
 import 'package:app_atractivos/src/pages/mapa_general.dart';
 import 'package:app_atractivos/src/pages/mapa_page.dart';
-import 'package:app_atractivos/src/pages/panorma_page.dart';
 import 'package:app_atractivos/src/pages/sitios_page.dart';
 import 'package:app_atractivos/src/pages/transporte_page.dart';
+import 'package:app_atractivos/src/pages/usuario_page.dart';
 import 'package:flutter/material.dart';
 import 'package:app_atractivos/src/bloc/provider.dart';
 import 'package:app_atractivos/src/pages/detalle_sitio_page.dart';
@@ -31,9 +35,13 @@ class MyApp extends StatelessWidget {
           'login': (BuildContext context) => LoginPage(),
           'mapa': (BuildContext context) => MapaPage(),
           'home': (BuildContext context) => HomePage(),
+          'usuario': (BuildContext context) => UsuarioPage(),
           'sitios': (BuildContext context) => SitiosPage(),
           'detalleSitio': (BuildContext context) => DetalleSitioPage(),
           'hospedaje': (BuildContext context) => HospedajePage(),
+          'gastronomia': (BuildContext context) => GastronomiaPage(),
+          'detalleGastronomia': (BuildContext context) =>
+              DetalleGastronomiaPage(),
           'detalleHospedaje': (BuildContext context) => DetalleHospedajePage(),
           'alimentacion': (BuildContext context) => AlimentacionPage(),
           'detalleAlimentacion': (BuildContext context) =>
@@ -41,10 +49,11 @@ class MyApp extends StatelessWidget {
           'transporte': (BuildContext context) => TransportePage(),
           'detalleTransporte': (BuildContext context) =>
               DetalleTransportePage(),
+          'eventos': (BuildContext context) => EventosPage(),
+          'detalleEventos': (BuildContext context) => DetalleEventosPage(),
           'informacion': (BuildContext context) => InformacionPage(),
           'emergencias': (BuildContext context) => EmergenciasPage(),
           'abrirEnlace': (BuildContext context) => AbrirEnlace(),
-          'panorama': (BuildContext context) => PanoramaPage(),
           'mapaGeneral': (BuildContext context) => MapaGeneralPage()
         },
         theme: ThemeData(primaryColor: Color(0xff57BC90)),

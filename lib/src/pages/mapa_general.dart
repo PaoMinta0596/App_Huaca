@@ -1,4 +1,5 @@
 import 'package:app_atractivos/src/models/sitio_model.dart';
+import 'package:app_atractivos/src/widgets/menu_widget.dart';
 import 'package:latlong/latlong.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -32,6 +33,7 @@ class _MapaGeneralPageState extends State<MapaGeneralPage> {
             IconButton(icon: Icon(Icons.my_location), onPressed: () {})
           ],
         ),
+        drawer: MenuWidget(),
         body: _crearMapa());
   }
 

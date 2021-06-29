@@ -14,7 +14,6 @@ class DetalleHospedajePage extends StatelessWidget {
       hospedaje = hospData;
     }
     return Scaffold(
-      backgroundColor: Color.fromRGBO(105, 124, 55, 1.0),
       appBar: AppBar(
         title: Text('${hospedaje.nombre}'),
         actions: [
@@ -23,7 +22,7 @@ class DetalleHospedajePage extends StatelessWidget {
                 Icons.home,
                 size: 35,
               ),
-              onPressed: () => Navigator.pushNamed(context, 'home'))
+              onPressed: () => Navigator.pushReplacementNamed(context, 'home'))
         ],
       ),
       body: SingleChildScrollView(
@@ -202,7 +201,7 @@ class DetalleHospedajePage extends StatelessWidget {
                   'assets/whatsapp.png',
                   height: 28,
                 ),
-                onPressed: () => abrirEnlace(hospedaje.whatsapp)),
+                onPressed: () => abrirEnlace(context, hospedaje.whatsapp)),
           ],
         ),
       ),

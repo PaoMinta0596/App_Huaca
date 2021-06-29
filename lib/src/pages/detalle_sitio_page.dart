@@ -14,7 +14,6 @@ class DetalleSitioPage extends StatelessWidget {
       sitio = sitData;
     }
     return Scaffold(
-      backgroundColor: Color.fromRGBO(105, 124, 55, 1.0),
       appBar: AppBar(
         title: Text('${sitio.nombre}'),
         actions: [
@@ -23,7 +22,7 @@ class DetalleSitioPage extends StatelessWidget {
                 Icons.home,
                 size: 35,
               ),
-              onPressed: () => Navigator.pushNamed(context, 'home'))
+              onPressed: () => Navigator.pushReplacementNamed(context, 'home'))
         ],
       ),
       body: SingleChildScrollView(
@@ -200,13 +199,7 @@ class DetalleSitioPage extends StatelessWidget {
                   'assets/whatsapp.png',
                   height: 28,
                 ),
-                onPressed: () {
-                  if (sitio.whatsapp == 'vacio') {
-                    _mostrarAlert(context);
-                  } else {
-                    abrirEnlace(sitio.whatsapp);
-                  }
-                }),
+                onPressed: () => abrirEnlace(context, sitio.whatsapp)),
             IconButton(
                 icon: Icon(Icons.bookmark_border,
                     color: Colors.purple[900], size: 30),

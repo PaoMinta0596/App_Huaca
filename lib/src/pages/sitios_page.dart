@@ -14,14 +14,8 @@ class _SitiosPageState extends State<SitiosPage> {
   final sitiosProvider = new SitiosProvider();
   int selectedIndex = 0;
   String query = '';
-  bool isPressed = true;
-  List categorias = [
-    'Todos',
-    'Naturales',
-    'Culturales',
-    'Religiosos',
-    'Gastronómicos'
-  ];
+  //bool isPressed = true;
+  List categorias = ['Todos', 'Naturales', 'Culturales', 'Religiosos'];
 
   @override
   Widget build(BuildContext context) {
