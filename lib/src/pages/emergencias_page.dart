@@ -1,6 +1,6 @@
-import 'package:app_atractivos/src/widgets/menu_widget.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class EmergenciasPage extends StatelessWidget {
   List nombre = [
     'Unidad de Policía Comunitaria',
@@ -33,7 +33,7 @@ class EmergenciasPage extends StatelessWidget {
         elevation: 0,
       ),
       backgroundColor: Color(0xff57BC90),
-      drawer: MenuWidget(),
+      // drawer: MenuWidget(),
       body: Container(
         child: _listaEmergencias(),
       ),

@@ -2,6 +2,7 @@ import 'package:app_atractivos/src/models/eventos_model.dart';
 import 'package:app_atractivos/src/utils/expandir_texto.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class DetalleEventosPage extends StatelessWidget {
   EventosModel evento = new EventosModel();
   @override

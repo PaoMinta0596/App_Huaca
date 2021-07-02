@@ -1,6 +1,7 @@
 import 'package:app_atractivos/src/models/gastronomia_model.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class DetalleGastronomiaPage extends StatelessWidget {
   GastronomiaModel gastronomia = new GastronomiaModel();
   @override

@@ -9,7 +9,15 @@ abrirEnlace(BuildContext context, String url) async {
     _mostrarAlert(context);
   }
 }
+
 //  => await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
+abrirServicio(BuildContext context, String url) async {
+  if (await canLaunch(url)) {
+    await Navigator.pushNamed(context, 'abrirEnlace', arguments: url);
+  } else {
+    _mostrarAlert(context);
+  }
+}
 
 void _mostrarAlert(BuildContext context) {
   showDialog(
@@ -19,16 +27,13 @@ void _mostrarAlert(BuildContext context) {
       return AlertDialog(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        title: Text('Whatsapp'),
+        title: Text('Información', textAlign: TextAlign.center),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Text('Este sitio no dispone de whatsapp\n\n'),
-            Image.asset(
-              'assets/whatsapp.png',
-              height: 60,
-              width: 60,
-            )
+            Icon(Icons.info, size: 80),
+            SizedBox(height: 20),
+            Text('Este servicio no está disponible'),
           ],
         ),
         actions: <Widget>[

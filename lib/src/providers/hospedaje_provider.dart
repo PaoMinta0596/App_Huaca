@@ -11,7 +11,7 @@ class HospedajeProvider {
 
     final Map<String, dynamic> decodedData = json.decode(resp.body);
 
-    final List<HospedajeModel> hospedaje = new List();
+    final List<HospedajeModel> hospedaje = [];
     if (decodedData == null) return [];
 
     decodedData.forEach((id, hosp) {

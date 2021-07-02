@@ -1,4 +1,4 @@
-import 'package:app_atractivos/src/bloc/provider.dart';
+//import 'package:app_atractivos/src/bloc/provider.dart';
 import 'package:app_atractivos/src/models/sitio_model.dart';
 import 'package:app_atractivos/src/providers/sitios_provider.dart';
 import 'package:app_atractivos/src/search/search_delegate.dart';
@@ -19,7 +19,7 @@ class _SitiosPageState extends State<SitiosPage> {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = Provider.of(context);
+    // final bloc = Provider.of(context);
 
     return Scaffold(
       appBar: AppBar(

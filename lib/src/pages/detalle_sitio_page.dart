@@ -4,6 +4,7 @@ import 'package:app_atractivos/src/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 
+// ignore: must_be_immutable
 class DetalleSitioPage extends StatelessWidget {
   SitiosModel sitio = new SitiosModel();
   @override
@@ -185,25 +186,13 @@ class DetalleSitioPage extends StatelessWidget {
             IconButton(
                 icon: Icon(Icons.panorama_photosphere,
                     color: Colors.orange[800], size: 30),
-                onPressed: () => Navigator.pushNamed(context, 'abrirEnlace',
-                    arguments: sitio.recorrido)),
+                onPressed: () => abrirServicio(context, sitio.recorrido)),
             IconButton(
-                icon: Image.asset(
-                  'assets/facebook.png',
-                  width: 28,
-                ),
-                onPressed: () => Navigator.pushNamed(context, 'abrirEnlace',
-                    arguments: sitio.facebook)),
+                icon: Image.asset('assets/facebook.png', width: 28),
+                onPressed: () => abrirServicio(context, sitio.facebook)),
             IconButton(
-                icon: Image.asset(
-                  'assets/whatsapp.png',
-                  height: 28,
-                ),
+                icon: Image.asset('assets/whatsapp.png', height: 28),
                 onPressed: () => abrirEnlace(context, sitio.whatsapp)),
-            IconButton(
-                icon: Icon(Icons.bookmark_border,
-                    color: Colors.purple[900], size: 30),
-                onPressed: () {}),
             IconButton(
                 icon: Icon(Icons.share_outlined, color: Colors.teal, size: 30),
                 onPressed: () async {
@@ -214,39 +203,6 @@ class DetalleSitioPage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  void _mostrarAlert(BuildContext context) {
-    showDialog(
-      context: context,
-      // barrierDismissible: true,
-      builder: (context) {
-        return AlertDialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-          title: Text('Whatsapp'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text('Este sitio no dispone de whatsapp\n\n'),
-              Image.asset(
-                'assets/whatsapp.png',
-                height: 60,
-                width: 60,
-              )
-            ],
-          ),
-          actions: <Widget>[
-            TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text(
-                  'Ok',
-                  style: TextStyle(fontSize: 20),
-                )),
-          ],
-        );
-      },
     );
   }
 }

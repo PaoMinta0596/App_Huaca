@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 
 class MapaPage extends StatelessWidget {
+  final map = new MapController();
   @override
   Widget build(BuildContext context) {
     final String coordenadas = ModalRoute.of(context).settings.arguments;
@@ -15,10 +16,15 @@ class MapaPage extends StatelessWidget {
         appBar: AppBar(
           title: Text('Coordenadas Geográficas'),
           actions: [
-            IconButton(icon: Icon(Icons.my_location), onPressed: () {})
+            IconButton(
+                icon: Icon(Icons.my_location),
+                onPressed: () {
+                  map.move(LatLng(lat, lng), 16);
+                })
           ],
         ),
         body: FlutterMap(
+          mapController: map,
           options: MapOptions(
             center: LatLng(lat, lng),
             zoom: 16.0,

@@ -1,7 +1,9 @@
 import 'package:app_atractivos/src/models/transporte_model.dart';
 import 'package:app_atractivos/src/utils/expandir_texto.dart';
+import 'package:app_atractivos/src/utils/utils.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class DetalleTransportePage extends StatelessWidget {
   TransporteModel transporte = new TransporteModel();
   @override
@@ -149,8 +151,7 @@ class DetalleTransportePage extends StatelessWidget {
                     arguments: transporte.coordenadas)),
             IconButton(
                 icon: Image.asset('assets/facebook.png', width: 28),
-                onPressed: () => Navigator.pushNamed(context, 'abrirEnlace',
-                    arguments: transporte.facebook)),
+                onPressed: () => abrirServicio(context, transporte.facebook)),
           ],
         ),
       ),

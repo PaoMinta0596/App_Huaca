@@ -11,7 +11,7 @@ class TransporteProvider {
 
     final Map<String, dynamic> decodedData = json.decode(resp.body);
 
-    final List<TransporteModel> transporte = new List();
+    final List<TransporteModel> transporte = [];
     if (decodedData == null) return [];
     decodedData.forEach((id, trans) {
       if (trans.toString().toLowerCase().contains(query.toLowerCase())) {

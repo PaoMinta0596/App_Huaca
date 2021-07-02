@@ -33,6 +33,7 @@ class GastronomiaPage extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class GastronomiaGrid extends StatelessWidget {
   final gastronomiaProvider = new GastronomiaProvider();
   String query = '';

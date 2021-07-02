@@ -28,7 +28,6 @@ class __SlidesState extends State<_Slides> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     pageViewController.addListener(() {

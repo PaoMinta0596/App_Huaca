@@ -4,6 +4,7 @@ import 'package:app_atractivos/src/utils/utils.dart';
 
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class DetalleHospedajePage extends StatelessWidget {
   HospedajeModel hospedaje = new HospedajeModel();
   @override
@@ -41,12 +42,6 @@ class DetalleHospedajePage extends StatelessWidget {
       ),
     );
   }
-
-  // Widget _crearBody(BuildContext) {
-  //   return Stack(
-  //     children: [_mostrarFoto(), _informacion(), _tarjetaIconos(context)],
-  //   );
-  // }
 
   Widget _informacion() {
     return Container(
@@ -190,17 +185,10 @@ class DetalleHospedajePage extends StatelessWidget {
                 onPressed: () => Navigator.pushNamed(context, 'mapa',
                     arguments: hospedaje.coordenadas)),
             IconButton(
-                icon: Image.asset(
-                  'assets/facebook.png',
-                  width: 28,
-                ),
-                onPressed: () => Navigator.pushNamed(context, 'abrirEnlace',
-                    arguments: hospedaje.facebook)),
+                icon: Image.asset('assets/facebook.png', width: 28),
+                onPressed: () => abrirServicio(context, hospedaje.facebook)),
             IconButton(
-                icon: Image.asset(
-                  'assets/whatsapp.png',
-                  height: 28,
-                ),
+                icon: Image.asset('assets/whatsapp.png', height: 28),
                 onPressed: () => abrirEnlace(context, hospedaje.whatsapp)),
           ],
         ),

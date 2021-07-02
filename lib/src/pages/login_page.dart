@@ -10,6 +10,22 @@ class LoginPage extends StatelessWidget {
       children: <Widget>[
         _crearFondo(context),
         _loginForm(context),
+        SafeArea(
+          child: Container(
+            alignment: Alignment.topRight,
+            padding: EdgeInsets.only(right: 10),
+            child: ElevatedButton.icon(
+              onPressed: () => Navigator.pushNamed(context, 'emergencias'),
+              icon: Icon(Icons.policy),
+              label: Text('Emergencias'),
+              style: ButtonStyle(
+                elevation: MaterialStateProperty.all(10),
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Color(0xff015249)),
+              ),
+            ),
+          ),
+        ),
       ],
     ));
   }
@@ -42,8 +58,10 @@ class LoginPage extends StatelessWidget {
                 ]),
             child: Column(
               children: <Widget>[
-                Text('Ingresar', style: TextStyle(fontSize: 20.0)),
-                SizedBox(height: 50.0),
+                Text('Ingresar',
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                SizedBox(height: 30.0),
                 _crearEmail(bloc),
                 SizedBox(height: 30.0),
                 _crearPassword(bloc),
@@ -52,8 +70,10 @@ class LoginPage extends StatelessWidget {
               ],
             ),
           ),
-          Text('¿Olvidó la contraseña?'),
-        
+          TextButton(
+            onPressed: () {},
+            child: Text('Crear una cuenta nueva'),
+          )
         ],
       ),
     );
@@ -104,16 +124,21 @@ class LoginPage extends StatelessWidget {
     return StreamBuilder(
       stream: bloc.formValidStream,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return RaisedButton(
+        return ElevatedButton(
+            style: ButtonStyle(
+              elevation: MaterialStateProperty.all(10),
+              backgroundColor:
+                  MaterialStateProperty.all<Color>(Color(0xff57BC90)),
+            ),
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
               child: Text('Ingresar'),
             ),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0)),
-            elevation: 0.0,
-            color: Color(0xff57BC90),
-            textColor: Colors.white,
+            // shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(5.0)),
+
+            // color: Color(0xff57BC90),
+            // textColor: Colors.white,
             onPressed: snapshot.hasData ? () => _login(bloc, context) : null);
       },
     );
@@ -143,27 +168,27 @@ class LoginPage extends StatelessWidget {
       height: 100.0,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100.0),
-          color: Color.fromRGBO(255, 255, 255, 0.05)),
+          color: Color.fromRGBO(255, 255, 255, 0.2)),
     );
 
     return Stack(
       children: <Widget>[
         fondoSuperior,
-        Positioned(top: 90.0, left: 30.0, child: circulo),
+        Positioned(top: -30.0, left: 60.0, child: circulo),
         Positioned(top: -40.0, right: -30.0, child: circulo),
-        Positioned(bottom: -50.0, right: -10.0, child: circulo),
-        Positioned(bottom: 120.0, right: 20.0, child: circulo),
+        Positioned(top: 150.0, right: 0.0, child: circulo),
+        Positioned(top: 190.0, left: 80.0, child: circulo),
         Container(
           padding: EdgeInsets.only(top: 50.0),
           child: Column(
             children: <Widget>[
-              Icon(Icons.person_pin_circle, color: Colors.white, size: 100.0),
-              SizedBox(height: 10.0, width: double.infinity),
-              Text('App Atractivos',
-                  style: TextStyle(color: Colors.white, fontSize: 25.0))
+              Image.asset(
+                'assets/VIAJEROS.png',
+                height: 160,
+              ),
             ],
           ),
-        )
+        ),
       ],
     );
   }

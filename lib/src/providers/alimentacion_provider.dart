@@ -12,7 +12,7 @@ class AlimentacionProvider {
 
     final Map<String, dynamic> decodedData = json.decode(resp.body);
 
-    final List<AlimentacionModel> alimentacion = new List();
+    final List<AlimentacionModel> alimentacion = [];
     if (decodedData == null) return [];
     decodedData.forEach((id, ali) {
       if (ali.toString().toLowerCase().contains(query.toLowerCase())) {

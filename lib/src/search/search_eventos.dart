@@ -34,6 +34,7 @@ class SearchEventos extends SearchDelegate {
   }
 
   @override
+  // ignore: missing_return
   Widget buildResults(BuildContext context) {
     // Crea los resultados que vamos a mostrar
   }

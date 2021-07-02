@@ -33,6 +33,7 @@ class EventosPage extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class EventosGrid extends StatelessWidget {
   final gastronomiaProvider = new EventosProvider();
   String query = '';

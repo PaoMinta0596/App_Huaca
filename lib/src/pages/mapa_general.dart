@@ -11,6 +11,7 @@ class MapaGeneralPage extends StatefulWidget {
 }
 
 class _MapaGeneralPageState extends State<MapaGeneralPage> {
+  final map = new MapController();
   List<SitiosModel> sitios;
 
   final sitiosProvider = new SitiosProvider();
@@ -30,7 +31,11 @@ class _MapaGeneralPageState extends State<MapaGeneralPage> {
         appBar: AppBar(
           title: Text('Coordenadas Geográficas'),
           actions: [
-            IconButton(icon: Icon(Icons.my_location), onPressed: () {})
+            IconButton(
+                icon: Icon(Icons.my_location),
+                onPressed: () {
+                  map.move(LatLng(0.6236749161623997, -77.71109013484904), 13);
+                })
           ],
         ),
         drawer: MenuWidget(),
@@ -39,6 +44,7 @@ class _MapaGeneralPageState extends State<MapaGeneralPage> {
 
   Widget _crearMapa() {
     return FlutterMap(
+      mapController: map,
       options: MapOptions(
         center: LatLng(0.6236749161623997, -77.71109013484904),
         zoom: 13.0,
@@ -90,7 +96,7 @@ class _MapaGeneralPageState extends State<MapaGeneralPage> {
           builder: (ctx) => GestureDetector(
             onTap: () {
               // Mostrar uma SnackBar quando clicar em um marcador
-              Scaffold.of(ctx).showSnackBar(SnackBar(
+              ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
                   content: ListTile(
                       onTap: () => Navigator.pushNamed(context, 'detalleSitio',
                           arguments: sitios[i]),
