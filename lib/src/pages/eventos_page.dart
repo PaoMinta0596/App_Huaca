@@ -12,7 +12,7 @@ class EventosPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Eventos'),
         centerTitle: true,
-        elevation: 0,
+        elevation: 4,
         actions: [
           IconButton(
               icon: Icon(Icons.search),
@@ -25,7 +25,6 @@ class EventosPage extends StatelessWidget {
         ],
       ),
       drawer: MenuWidget(),
-      backgroundColor: Color(0xff57BC90),
       body: Center(
         child: EventosGrid(),
       ),
@@ -66,6 +65,7 @@ class EventosGrid extends StatelessWidget {
         onTap: () =>
             Navigator.pushNamed(context, 'detalleEventos', arguments: eve),
         child: Card(
+            elevation: 20.0,
             margin: EdgeInsets.all(5),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)),

@@ -47,10 +47,9 @@ class DetalleSitioPage extends StatelessWidget {
 
   Widget _informacion() {
     return Container(
-        color: Colors.white,
         margin: EdgeInsets.only(top: 300.0),
         padding:
-            EdgeInsets.only(top: 50.0, bottom: 20.0, left: 20.0, right: 20.0),
+            EdgeInsets.only(top: 5.0, bottom: 20.0, left: 20.0, right: 20.0),
         child: Column(
           children: [
             ExpandableText(
@@ -105,7 +104,9 @@ class DetalleSitioPage extends StatelessWidget {
             ListTile(
               dense: true,
               title: Text('Correo Electrónico', style: TextStyle(fontSize: 16)),
-              subtitle: Text('${sitio.correo}', style: TextStyle(fontSize: 15)),
+              subtitle: Text(
+                  sitio.correo != null ? '${sitio.correo}' : 'No dispone',
+                  style: TextStyle(fontSize: 15)),
               leading: Icon(Icons.email_outlined, color: Colors.red[300]),
               horizontalTitleGap: 0,
             ),
@@ -132,7 +133,7 @@ class DetalleSitioPage extends StatelessWidget {
   }
 
   _mascotasAcceso() {
-    if (sitio.mascotas == true) {
+    if (sitio.mascotas == 'Si') {
       return Text('El acceso a mascotas es libre',
           style: TextStyle(fontSize: 15));
     } else {
@@ -148,14 +149,16 @@ class DetalleSitioPage extends StatelessWidget {
         child: FadeInImage(
             image: NetworkImage(sitio.imagenes),
             placeholder: AssetImage('assets/jar-loading.gif'),
-            height: 300.0,
+            height: 250.0,
+            width: double.infinity,
             fit: BoxFit.cover),
       );
     } else {
       return Container(
         child: Image(
           image: AssetImage('assets/no-image.png'),
-          height: 300.0,
+          height: 250.0,
+          width: double.infinity,
           fit: BoxFit.cover,
         ),
       );
@@ -164,7 +167,7 @@ class DetalleSitioPage extends StatelessWidget {
 
   Widget _tarjetaIconos(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 270.0),
+      margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 220.0),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
       elevation: 10.0,
       child: Container(

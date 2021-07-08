@@ -30,9 +30,9 @@ class EmergenciasPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Números de emergencia'),
         centerTitle: true,
-        elevation: 0,
+        elevation: 4,
       ),
-      backgroundColor: Color(0xff57BC90),
+
       // drawer: MenuWidget(),
       body: Container(
         child: _listaEmergencias(),
@@ -51,6 +51,7 @@ class EmergenciasPage extends StatelessWidget {
   Widget _crearItem(BuildContext context, String nombre, String telefono,
       String imagen, String direccion, String coordenadas) {
     return Card(
+      elevation: 20.0,
       margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
       clipBehavior: Clip.antiAlias,

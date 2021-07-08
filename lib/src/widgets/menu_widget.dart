@@ -1,6 +1,13 @@
+import 'package:app_atractivos/src/bloc/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class MenuWidget extends StatelessWidget {
+class MenuWidget extends StatefulWidget {
+  @override
+  _MenuWidgetState createState() => _MenuWidgetState();
+}
+
+class _MenuWidgetState extends State<MenuWidget> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -27,7 +34,7 @@ class MenuWidget extends StatelessWidget {
               dense: true,
               leading: Icon(Icons.person, color: Color(0xff015249)),
               title: Text('Mi perfil', style: TextStyle(fontSize: 14)),
-              onTap: () => Navigator.pushNamed(context, 'login')),
+              onTap: () => Navigator.pushNamed(context, 'usuario')),
           ListTile(
               dense: true,
               leading: Icon(Icons.attractions, color: Color(0xff015249)),
@@ -79,8 +86,14 @@ class MenuWidget extends StatelessWidget {
             onTap: () => Navigator.pushNamed(context, 'emergencias'),
           ),
           SizedBox(height: 10),
-          SwitchListTile(
-              value: false, title: Text('Modo Oscuro'), onChanged: (value) {})
+          Consumer<ThemeNotifier>(
+            builder: (context, notifier, child) => SwitchListTile(
+                title: Text('Modo Oscuro'),
+                onChanged: (value) {
+                  notifier.toggleTheme();
+                },
+                value: notifier.darkTheme),
+          )
         ],
       ),
     );

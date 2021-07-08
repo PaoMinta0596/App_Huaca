@@ -42,10 +42,9 @@ class DetalleGastronomiaPage extends StatelessWidget {
 
   Widget _informacion() {
     return Container(
-        color: Colors.white,
-        margin: EdgeInsets.only(top: 300.0),
+        margin: EdgeInsets.only(top: 250.0),
         padding:
-            EdgeInsets.only(top: 10.0, bottom: 20.0, left: 20.0, right: 20.0),
+            EdgeInsets.only(top: 5.0, bottom: 20.0, left: 20.0, right: 20.0),
         child: Column(
           children: [
             ListTile(
@@ -83,14 +82,16 @@ class DetalleGastronomiaPage extends StatelessWidget {
         child: FadeInImage(
             image: NetworkImage(gastronomia.imagenes),
             placeholder: AssetImage('assets/jar-loading.gif'),
-            height: 300.0,
+            height: 250.0,
+            width: double.infinity,
             fit: BoxFit.fill),
       );
     } else {
       return Container(
         child: Image(
           image: AssetImage('assets/no-image.png'),
-          height: 300.0,
+          height: 250.0,
+          width: double.infinity,
           fit: BoxFit.cover,
         ),
       );

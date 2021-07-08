@@ -32,9 +32,8 @@ class _AlimentacionPageState extends State<AlimentacionPage> {
         ],
         title: Text('Alimentación'),
         centerTitle: true,
-        elevation: 0,
+        elevation: 4,
       ),
-      backgroundColor: Color(0xff57BC90),
       drawer: MenuWidget(),
       body: Container(
           child: Column(
@@ -71,6 +70,7 @@ class _AlimentacionPageState extends State<AlimentacionPage> {
       onTap: () => Navigator.pushNamed(context, 'detalleAlimentacion',
           arguments: alimentacion),
       child: Card(
+        elevation: 20.0,
         margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),

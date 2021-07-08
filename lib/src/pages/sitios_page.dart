@@ -25,7 +25,7 @@ class _SitiosPageState extends State<SitiosPage> {
       appBar: AppBar(
         title: Text('Sitios turísticos'),
         centerTitle: true,
-        elevation: 0,
+        elevation: 4,
         actions: [
           IconButton(
               icon: Icon(Icons.search),
@@ -37,7 +37,7 @@ class _SitiosPageState extends State<SitiosPage> {
               })
         ],
       ),
-      backgroundColor: Color(0xff57BC90),
+      // backgroundColor: Color(0xff57BC90),
       drawer: MenuWidget(),
       body: Container(
           child: Column(
@@ -78,7 +78,7 @@ class _SitiosPageState extends State<SitiosPage> {
                   padding: EdgeInsets.symmetric(horizontal: 22.0),
                   decoration: BoxDecoration(
                       color: index == selectedIndex
-                          ? Colors.white.withOpacity(0.4)
+                          ? Colors.greenAccent[400].withOpacity(0.3)
                           : Colors.transparent,
                       borderRadius: BorderRadius.circular(7)),
                   child: Text(
@@ -113,6 +113,7 @@ class _SitiosPageState extends State<SitiosPage> {
       onTap: () =>
           Navigator.pushNamed(context, 'detalleSitio', arguments: sitio),
       child: Card(
+        elevation: 20.0,
         margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),

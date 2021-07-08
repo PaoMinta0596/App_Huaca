@@ -1,8 +1,20 @@
 import 'package:app_atractivos/src/bloc/login_bloc.dart';
 import 'package:app_atractivos/src/bloc/provider.dart';
+import 'package:app_atractivos/src/providers/usuario_provider.dart';
+import 'package:app_atractivos/src/utils/utils.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final usuarioProvider = new UsuarioProvider();
+
+  bool cubrir = true;
+  IconData icono = Icons.lock_outline;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +43,7 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget _loginForm(BuildContext context) {
-    final bloc = Provider.of(context);
+    final bloc = ProviderUs.of(context);
     final size = MediaQuery.of(context).size;
 
     return SingleChildScrollView(
@@ -42,37 +54,40 @@ class LoginPage extends StatelessWidget {
               height: 180.0,
             ),
           ),
-          Container(
-            width: size.width * 0.85,
-            margin: EdgeInsets.symmetric(vertical: 30.0),
-            padding: EdgeInsets.symmetric(vertical: 50.0),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5.0),
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 3.0,
-                      offset: Offset(0.0, 5.0),
-                      spreadRadius: 3.0)
-                ]),
-            child: Column(
-              children: <Widget>[
-                Text('Ingresar',
-                    style:
-                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
-                SizedBox(height: 30.0),
-                _crearEmail(bloc),
-                SizedBox(height: 30.0),
-                _crearPassword(bloc),
-                SizedBox(height: 30.0),
-                _crearBoton(bloc)
-              ],
+          Card(
+            elevation: 20,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)),
+            clipBehavior: Clip.antiAlias,
+            child: Container(
+              width: size.width * 0.85,
+              margin: EdgeInsets.symmetric(vertical: 30.0),
+              padding: EdgeInsets.symmetric(vertical: 20.0),
+              child: Column(
+                children: <Widget>[
+                  Text('Ingresar',
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold)),
+                  SizedBox(height: 30.0),
+                  _crearEmail(bloc),
+                  SizedBox(height: 30.0),
+                  _crearPassword(bloc),
+                  SizedBox(height: 50.0),
+                  _crearBoton(bloc)
+                ],
+              ),
             ),
           ),
+          SizedBox(
+            height: 20,
+          ),
           TextButton(
-            onPressed: () {},
-            child: Text('Crear una cuenta nueva'),
+            onPressed: () =>
+                Navigator.pushReplacementNamed(context, 'registro'),
+            child: Text(
+              'Crear una cuenta nueva',
+              style: TextStyle(fontSize: 17),
+            ),
           )
         ],
       ),
@@ -91,7 +106,7 @@ class LoginPage extends StatelessWidget {
                 icon: Icon(Icons.alternate_email, color: Color(0xff015249)),
                 hintText: 'ejemplo@correo.com',
                 labelText: 'Correo electrónico',
-                counterText: snapshot.data,
+                // counterText: snapshot.data,
                 errorText: snapshot.error),
             onChanged: bloc.changeEmail,
           ),
@@ -107,11 +122,23 @@ class LoginPage extends StatelessWidget {
         return Container(
           padding: EdgeInsets.symmetric(horizontal: 20.0),
           child: TextField(
-            obscureText: true,
+            obscureText: cubrir,
             decoration: InputDecoration(
+                suffixIcon: GestureDetector(
+                    child: Icon(icono),
+                    onTap: () {
+                      setState(() {
+                        cubrir = !cubrir;
+                        if (icono == Icons.lock_outline) {
+                          icono = Icons.lock_open;
+                        } else {
+                          icono = Icons.lock_outline;
+                        }
+                      });
+                    }),
                 icon: Icon(Icons.lock_outline, color: Color(0xff015249)),
                 labelText: 'Contraseña',
-                counterText: snapshot.data,
+                // counterText: snapshot.data,
                 errorText: snapshot.error),
             onChanged: bloc.changePassword,
           ),
@@ -134,23 +161,20 @@ class LoginPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
               child: Text('Ingresar'),
             ),
-            // shape: RoundedRectangleBorder(
-            //     borderRadius: BorderRadius.circular(5.0)),
-
-            // color: Color(0xff57BC90),
-            // textColor: Colors.white,
             onPressed: snapshot.hasData ? () => _login(bloc, context) : null);
       },
     );
   }
 
-  _login(LoginBloc bloc, BuildContext context) {
-    print('==================');
-    print('Email: ${bloc.email}');
-    print('Password: ${bloc.password}');
-    print('==================');
+  _login(LoginBloc bloc, BuildContext context) async {
+    Map info = await usuarioProvider.login(bloc.email, bloc.password);
 
-    Navigator.pushReplacementNamed(context, 'home');
+    if (info['ok']) {
+      Navigator.pushReplacementNamed(context, 'home');
+    } else {
+      mostrarAlerta(
+          context, 'El usuario o contraseña ingresados son incorrectos');
+    }
   }
 
   Widget _crearFondo(BuildContext context) {

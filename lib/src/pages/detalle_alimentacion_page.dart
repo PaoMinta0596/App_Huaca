@@ -45,10 +45,9 @@ class DetalleAlimentacionPage extends StatelessWidget {
 
   Widget _informacion() {
     return Container(
-        color: Colors.white,
         margin: EdgeInsets.only(top: 300.0),
         padding:
-            EdgeInsets.only(top: 50.0, bottom: 20.0, left: 20.0, right: 20.0),
+            EdgeInsets.only(top: 5.0, bottom: 20.0, left: 20.0, right: 20.0),
         child: Column(
           children: [
             ExpandableText(
@@ -103,14 +102,16 @@ class DetalleAlimentacionPage extends StatelessWidget {
         child: FadeInImage(
             image: NetworkImage(alimentacion.imagenes),
             placeholder: AssetImage('assets/jar-loading.gif'),
-            height: 300.0,
+            height: 250.0,
+            width: double.infinity,
             fit: BoxFit.cover),
       );
     } else {
       return Container(
         child: Image(
           image: AssetImage('assets/no-image.png'),
-          height: 300.0,
+          height: 250.0,
+          width: double.infinity,
           fit: BoxFit.cover,
         ),
       );
@@ -121,7 +122,7 @@ class DetalleAlimentacionPage extends StatelessWidget {
     return Card(
       margin: EdgeInsets.symmetric(
         horizontal: 80.0,
-        vertical: 270.0,
+        vertical: 220.0,
       ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
       elevation: 10.0,

@@ -48,3 +48,20 @@ void _mostrarAlert(BuildContext context) {
     },
   );
 }
+
+void mostrarAlerta(BuildContext context, String mensaje) {
+  showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Información Incorrecta'),
+          content: Text(mensaje),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text('Ok', style: TextStyle(fontSize: 20)),
+            )
+          ],
+        );
+      });
+}

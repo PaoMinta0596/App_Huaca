@@ -39,8 +39,8 @@ class HospedajeModel {
   String correo;
   String whatsapp;
   String facebook;
-  bool mascotas;
-  bool wifi;
+  String mascotas;
+  String wifi;
 
   factory HospedajeModel.fromJson(Map<String, dynamic> json) => HospedajeModel(
         id: json["id"],

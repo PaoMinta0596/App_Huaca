@@ -26,9 +26,8 @@ class SitiosModel {
     this.whatsapp = '',
     this.facebook = '',
     this.transporte = '',
-    this.mascotas = true,
+    this.mascotas = '',
     this.categoria = '',
-    this.likes = 0,
     this.coordenadas = '',
   });
 
@@ -47,9 +46,8 @@ class SitiosModel {
   String whatsapp;
   String facebook;
   String transporte;
-  bool mascotas;
+  String mascotas;
   String categoria;
-  int likes;
   String coordenadas;
 
   factory SitiosModel.fromJson(Map<String, dynamic> json) => SitiosModel(
@@ -70,7 +68,6 @@ class SitiosModel {
         transporte: json["transporte"],
         mascotas: json["mascotas"],
         categoria: json["categoria"],
-        likes: json["likes"],
         coordenadas: json["coordenadas"],
       );
 
@@ -92,7 +89,6 @@ class SitiosModel {
         "transporte": transporte,
         "mascotas": mascotas,
         "categoria": categoria,
-        "likes": likes,
         "coordenadas": coordenadas,
       };
 

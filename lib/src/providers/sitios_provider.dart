@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:app_atractivos/src/models/sitio_model.dart';
 
 class SitiosProvider {
-  final String _url = 'https://sitioshuaca-default-rtdb.firebaseio.com';
+  final String _url = 'https://admin-6c5a5-default-rtdb.firebaseio.com/';
 
   // Future<List<SitiosModel>> cargarSitios() async {
   //   final url = Uri.parse('$_url/sitios.json');

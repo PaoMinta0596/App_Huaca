@@ -30,9 +30,8 @@ class _HospedajePageState extends State<HospedajePage> {
         ],
         title: Text('Hospedaje'),
         centerTitle: true,
-        elevation: 0,
+        elevation: 4,
       ),
-      backgroundColor: Color(0xff57BC90),
       drawer: MenuWidget(),
       body: Container(
           child: Column(
@@ -69,6 +68,7 @@ class _HospedajePageState extends State<HospedajePage> {
       onTap: () => Navigator.pushNamed(context, 'detalleHospedaje',
           arguments: hospedaje),
       child: Card(
+        elevation: 20.0,
         margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),

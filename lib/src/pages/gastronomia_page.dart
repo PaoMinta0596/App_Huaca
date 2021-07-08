@@ -12,7 +12,7 @@ class GastronomiaPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Gastronomía del Cantón'),
         centerTitle: true,
-        elevation: 0,
+        elevation: 4,
         actions: [
           IconButton(
               icon: Icon(Icons.search),
@@ -25,7 +25,6 @@ class GastronomiaPage extends StatelessWidget {
         ],
       ),
       drawer: MenuWidget(),
-      backgroundColor: Color(0xff57BC90),
       body: Center(
         child: GastronomiaGrid(),
       ),
@@ -71,7 +70,7 @@ class GastronomiaGrid extends StatelessWidget {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)),
             clipBehavior: Clip.antiAlias,
-            //elevation: 0.0,
+            elevation: 20.0,
             child: Column(children: [
               (gast.imagenes == null)
                   ? Image(image: AssetImage('assets/no-image.png'))

@@ -1,3 +1,4 @@
+import 'package:app_atractivos/src/preferencias_usuario.dart/preferencias_usuario.dart';
 import 'package:app_atractivos/src/widgets/menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -13,10 +14,14 @@ class HomePage extends StatelessWidget {
     'https://res.cloudinary.com/dgn9qbfmo/image/upload/v1624048103/IMG_20210605_121106_3_gkraar.jpg'
   ];
 
+  final prefs = new PreferenciasUsuario();
+
   @override
   Widget build(BuildContext context) {
+    prefs.ultimaPagina = 'home';
     return Scaffold(
         appBar: AppBar(
+          elevation: 4,
           title: Text('Inicio'),
         ),
         drawer: MenuWidget(),
