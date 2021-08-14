@@ -18,7 +18,7 @@ class Validators {
     if (password.length >= 6) {
       sink.add(password);
     } else {
-      sink.addError('La contraseña debe contener más de seis caracteres');
+      sink.addError('Contraseña demasiado corta');
     }
   });
 }

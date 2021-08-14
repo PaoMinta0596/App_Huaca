@@ -180,6 +180,11 @@ class _LoginPageState extends State<LoginPage> {
   Widget _crearFondo(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final fondoSuperior = Container(
+      // child: Image.asset(
+      //   'assets/portada.jpg',
+      //   height: size.height * 0.4,
+      //   width: double.infinity,
+      // ),
       height: size.height * 0.4,
       width: double.infinity,
       decoration: BoxDecoration(

@@ -4,7 +4,7 @@ import 'package:app_atractivos/src/preferencias_usuario.dart/preferencias_usuari
 import 'package:http/http.dart' as http;
 
 class UsuarioProvider {
-  final String _firebaseToken = 'AIzaSyAVYWIXhBjU13CiclpDHSetc44kNUM0cuQ';
+  final String _firebaseToken = 'AIzaSyB4NdodQfUZrYR63-PlRE0TGzrT74O6Vkw';
 
   final _prefs = new PreferenciasUsuario();
 

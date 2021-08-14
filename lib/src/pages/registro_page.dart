@@ -18,6 +18,10 @@ class _RegistroPageState extends State<RegistroPage> {
   final usuarioProvider = new UsuarioProvider();
   bool _guardando = false;
   String password;
+  String valueChoose;
+  List preferencias = ['Naturales', 'Culturales'];
+  bool cubrir = true;
+  IconData icono = Icons.lock_outline;
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +31,12 @@ class _RegistroPageState extends State<RegistroPage> {
       body: Stack(children: [
         _crearFondo(context),
         Container(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.only(left: 20, right: 20),
           child: SingleChildScrollView(
             child: Column(
               children: [
                 SafeArea(
-                  child: Container(height: 30.0),
+                  child: Container(height: 10.0),
                 ),
                 _crearFormulario(),
                 SizedBox(height: 10),
@@ -61,7 +65,7 @@ class _RegistroPageState extends State<RegistroPage> {
       child: Container(
         width: size.width * 0.85,
         margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
-        padding: EdgeInsets.symmetric(vertical: 20.0),
+        padding: EdgeInsets.symmetric(vertical: 15.0),
         child: Form(
           key: formKey,
           child: Column(
@@ -78,6 +82,7 @@ class _RegistroPageState extends State<RegistroPage> {
               _ciudadUsuario(),
               _emailUsuario(),
               _passwordUsuario(),
+              _preferencia(),
               _crearBoton(),
             ],
           ),
@@ -123,7 +128,7 @@ class _RegistroPageState extends State<RegistroPage> {
       onSaved: (value) => usuario.nombre = value,
       validator: (value) {
         if (value.isEmpty) {
-          return 'El campo está vacío, por ingrese su nombre';
+          return 'El campo está vacío, por favor ingrese su nombre';
         } else {
           return null;
         }
@@ -169,7 +174,7 @@ class _RegistroPageState extends State<RegistroPage> {
     return TextFormField(
       initialValue: usuario.pais,
       textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(labelText: 'Pais'),
+      decoration: InputDecoration(labelText: 'País'),
       onSaved: (value) => usuario.pais = value,
       validator: (value) {
         if (value.isEmpty) {
@@ -201,8 +206,7 @@ class _RegistroPageState extends State<RegistroPage> {
     return TextFormField(
         initialValue: usuario.ciudad,
         keyboardType: TextInputType.emailAddress,
-        textCapitalization: TextCapitalization.sentences,
-        decoration: InputDecoration(labelText: 'Email'),
+        decoration: InputDecoration(labelText: 'Correo electrónico'),
         onSaved: (value) => usuario.email = value,
         validator: (value) {
           Pattern pattern =
@@ -219,13 +223,52 @@ class _RegistroPageState extends State<RegistroPage> {
   Widget _passwordUsuario() {
     return TextFormField(
       initialValue: password,
-      obscureText: true,
+      obscureText: cubrir,
       textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(labelText: 'Contraseña'),
+      decoration: InputDecoration(
+        labelText: 'Contraseña',
+        suffixIcon: GestureDetector(
+            child: Icon(icono),
+            onTap: () {
+              setState(() {
+                cubrir = !cubrir;
+                if (icono == Icons.lock_outline) {
+                  icono = Icons.lock_open;
+                } else {
+                  icono = Icons.lock_outline;
+                }
+              });
+            }),
+      ),
       onSaved: (value) => password = value,
       validator: (value) {
         if (value.length < 6) {
           return 'La contraseña es demasiado corta';
+        } else {
+          return null;
+        }
+      },
+    );
+  }
+
+  Widget _preferencia() {
+    return DropdownButtonFormField(
+      hint: Text('Seleccione su categoría preferida'),
+      iconSize: 36,
+      isExpanded: true,
+      value: valueChoose,
+      onChanged: (newValue) {
+        setState(() {
+          valueChoose = newValue;
+        });
+      },
+      items: preferencias.map((valueItem) {
+        return DropdownMenuItem(value: valueItem, child: Text(valueItem));
+      }).toList(),
+      onSaved: (value) => usuario.sitioPreferido = value,
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Seleccione una categoría';
         } else {
           return null;
         }
@@ -244,7 +287,7 @@ class _RegistroPageState extends State<RegistroPage> {
         ),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 15.0),
-          child: Text('Crear Cuenta'),
+          child: Text('Crear cuenta'),
         ),
         onPressed: (_guardando) ? null : _submit,
       ),

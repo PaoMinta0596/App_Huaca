@@ -9,7 +9,7 @@ class EmergenciasPage extends StatelessWidget {
   ];
   List telefono = ['(06) 2973230', '(06) 3012904 - 3012903', '(06) 2973085'];
   List direccion = [
-    'Huaca, Calle 8 de Diciembre y ....',
+    'Huaca, Calle 8 de Diciembre y Juan León Mera',
     'Huaca, Calle García Moreno y Juan Montalvo',
     'Huaca, Calle 8 de Diciembre y Rubén Fuertes'
   ];
@@ -89,13 +89,14 @@ class EmergenciasPage extends StatelessWidget {
             ),
           ),
           ListTile(
-              dense: true,
-              leading: Icon(Icons.location_on_sharp, color: Colors.lightBlue),
-              horizontalTitleGap: 0,
-              title: Text(direccion,
-                  style: TextStyle(
-                    fontSize: 16.0,
-                  ))),
+            dense: true,
+            leading: Icon(Icons.location_on_sharp, color: Colors.lightBlue),
+            horizontalTitleGap: 0,
+            title: Text(direccion,
+                style: TextStyle(
+                  fontSize: 16.0,
+                )),
+          ),
         ],
       ),
     );

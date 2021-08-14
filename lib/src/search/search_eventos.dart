@@ -62,7 +62,7 @@ class SearchEventos extends SearchDelegate {
                     fit: BoxFit.contain,
                   ),
                   title: Text(evento.nombre),
-                  subtitle: Text(evento.fecha),
+                  subtitle: Text(evento.ubicacion),
                   onTap: () {
                     close(context, null);
                     Navigator.pushNamed(context, 'detalleEventos',

@@ -18,6 +18,7 @@ class UsuariosModel {
     this.edad,
     this.ciudad,
     this.pais,
+    this.sitioPreferido,
   });
 
   String id;
@@ -27,6 +28,7 @@ class UsuariosModel {
   String edad;
   String ciudad;
   String pais;
+  String sitioPreferido;
 
   factory UsuariosModel.fromJson(Map<String, dynamic> json) => UsuariosModel(
         id: json["id"],
@@ -36,6 +38,7 @@ class UsuariosModel {
         edad: json["edad"],
         ciudad: json["ciudad"],
         pais: json["pais"],
+        sitioPreferido: json["sitio_preferido"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -46,5 +49,6 @@ class UsuariosModel {
         "edad": edad,
         "ciudad": ciudad,
         "pais": pais,
+        "sitio_preferido": sitioPreferido,
       };
 }

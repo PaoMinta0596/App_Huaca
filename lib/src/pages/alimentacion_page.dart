@@ -1,8 +1,6 @@
 import 'package:app_atractivos/src/models/alimentacion_model.dart';
-
 import 'package:app_atractivos/src/providers/alimentacion_provider.dart';
 import 'package:app_atractivos/src/search/search_alimentacion.dart';
-
 import 'package:app_atractivos/src/widgets/menu_widget.dart';
 import 'package:flutter/material.dart';
 

@@ -4,7 +4,7 @@ import 'package:app_atractivos/src/preferencias_usuario.dart/preferencias_usuari
 import 'package:http/http.dart' as http;
 
 class UsuariosProvider {
-  final String _url = 'https://sitioshuaca-default-rtdb.firebaseio.com';
+  final String _url = 'https://admin-6c5a5-default-rtdb.firebaseio.com/';
 
   final _prefs = new PreferenciasUsuario();
 

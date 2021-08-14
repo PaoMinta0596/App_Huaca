@@ -1,17 +1,19 @@
 import 'package:app_atractivos/src/models/eventos_model.dart';
+import 'package:app_atractivos/src/utils/control_fecha.dart';
 import 'package:app_atractivos/src/utils/expandir_texto.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class DetalleEventosPage extends StatelessWidget {
   EventosModel evento = new EventosModel();
+  String texto;
   @override
   Widget build(BuildContext context) {
     final EventosModel eveData = ModalRoute.of(context).settings.arguments;
-
     if (eveData != null) {
       evento = eveData;
     }
+    texto = fechaCaducada(evento.fechaFin);
     return Scaffold(
       appBar: AppBar(
         title: Text('Evento Programado'),
@@ -31,7 +33,8 @@ class DetalleEventosPage extends StatelessWidget {
             child: Stack(
               children: [
                 _mostrarFoto(),
-                _informacion(),
+                _informacion(context),
+                _caducacion(context),
               ],
             ),
           ),
@@ -40,9 +43,9 @@ class DetalleEventosPage extends StatelessWidget {
     );
   }
 
-  Widget _informacion() {
+  Widget _informacion(BuildContext context) {
     return Container(
-        margin: EdgeInsets.only(top: 250.0),
+        margin: EdgeInsets.only(top: 280.0),
         padding:
             EdgeInsets.only(top: 5.0, bottom: 20.0, left: 20.0, right: 20.0),
         child: Column(
@@ -62,8 +65,20 @@ class DetalleEventosPage extends StatelessWidget {
             Divider(),
             ListTile(
               dense: true,
-              title: Text('Fecha', style: TextStyle(fontSize: 16)),
-              subtitle: Text('${evento.fecha}', style: TextStyle(fontSize: 15)),
+              title: Text('Fecha de Inicio', style: TextStyle(fontSize: 16)),
+              subtitle: Text(
+                '${evento.fechaInicio}',
+                style: TextStyle(fontSize: 15),
+              ),
+              leading: Icon(Icons.calendar_today, color: Colors.blue),
+              horizontalTitleGap: 0,
+            ),
+            Divider(),
+            ListTile(
+              dense: true,
+              title: Text('Fecha de Fin', style: TextStyle(fontSize: 16)),
+              subtitle:
+                  Text('${evento.fechaFin}', style: TextStyle(fontSize: 15)),
               leading: Icon(Icons.calendar_today, color: Colors.blue),
               horizontalTitleGap: 0,
             ),
@@ -77,13 +92,26 @@ class DetalleEventosPage extends StatelessWidget {
             ),
             Divider(),
             ListTile(
-              dense: true,
-              title: Text('Ubicación', style: TextStyle(fontSize: 16)),
-              subtitle:
-                  Text('${evento.ubicacion}', style: TextStyle(fontSize: 15)),
-              leading: Icon(Icons.location_on, color: Colors.red),
-              horizontalTitleGap: 0,
-            ),
+                dense: true,
+                title: Text('Ubicación', style: TextStyle(fontSize: 16)),
+                subtitle:
+                    Text('${evento.ubicacion}', style: TextStyle(fontSize: 15)),
+                leading: Icon(Icons.location_on, color: Colors.red),
+                horizontalTitleGap: 0,
+                trailing: Container(
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(165, 165, 175, 0.5),
+                    borderRadius: BorderRadius.circular(30.0),
+                    //color: Colors.blue[100],
+                  ),
+                  child: IconButton(
+                    iconSize: 30,
+                    color: Colors.blue,
+                    icon: Icon(Icons.map),
+                    onPressed: () => Navigator.pushNamed(context, 'mapa',
+                        arguments: evento.coordenadas),
+                  ),
+                )),
             Divider(),
           ],
         ));
@@ -109,5 +137,32 @@ class DetalleEventosPage extends StatelessWidget {
         ),
       );
     }
+  }
+
+  Widget _caducacion(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.symmetric(
+        horizontal: 80.0,
+        vertical: 220.0,
+      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+      elevation: 10.0,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Color.fromRGBO(165, 165, 175, 0.5),
+          borderRadius: BorderRadius.circular(30.0),
+          //color: Colors.blue[100],
+        ),
+        height: 55.0,
+        padding: EdgeInsets.only(left: 20, right: 20, top: 0, bottom: 0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(texto,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
+          ],
+        ),
+      ),
+    );
   }
 }
